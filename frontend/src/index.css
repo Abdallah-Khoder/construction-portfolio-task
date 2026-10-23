@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+/* Main colors used across the site */
+:root {
+  --orange: #e66528;
+  --navy: #0f2438;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+}
+
+.text-orange { color: var(--orange); }
+
+/* ".btn.btn-orange" is more specific than Bootstrap's ".btn", so it always wins */
+.btn.btn-orange {
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+  color: #fff;
+  font-weight: 700;
+  padding: .65rem 1.4rem;
+}
+.btn.btn-orange:hover {
+  background-color: #cf5820;
+  border-color: #cf5820;
+  color: #fff;
+}
+
+/* Logo icon box in the navbar */
+.logo-box {
+  background: #fde8dc;
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  padding-top: 110px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* content on top, counters at the bottom */
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, .12);
+  padding: .35rem .9rem;
+  border-radius: 8px;
+  font-size: .8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem); /* scales with the screen width */
+  font-weight: 800;
+  max-width: 620px;
+}
+.hero-desc {
+  max-width: 560px;
+  opacity: .85;
+  margin: 1.2rem 0 1.6rem;
+}
+
+/* Orange counters bar */
+.counters {
+  background: var(--orange);
+  border-radius: 10px 10px 0 0;
+  padding: .9rem 0;
+  margin-top: 1.5rem;
+}
+.counter-number { font-size: 1.7rem; font-weight: 800; }
+.counter-label { font-size: .8rem; opacity: .9; }
