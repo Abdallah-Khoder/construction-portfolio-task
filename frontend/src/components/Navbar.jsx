@@ -1,7 +1,24 @@
-// Receives site settings (brand, phone, button) and nav links from the API
-export default function Navbar({ site, nav }) {
+import { useEffect, useRef } from 'react'
+
+// Receives site settings, nav links and the id of the active section
+export default function Navbar({ site, nav, active }) {
+  const navRef = useRef(null)
+
+  // Save the real navbar height in a CSS variable (--nav-h), used for scroll offsets
+  useEffect(() => {
+    const setHeight = () => {
+      document.documentElement.style.setProperty(
+        '--nav-h',
+        `${navRef.current.offsetHeight}px`
+      )
+    }
+    setHeight()
+    window.addEventListener('resize', setHeight)
+    return () => window.removeEventListener('resize', setHeight)
+  }, [])
+
   return (
-    <nav className="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
+    <nav ref={navRef} className="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
       <div className="container">
         <a className="navbar-brand fw-bold d-flex align-items-center gap-2" href="#home">
           <span className="logo-box">
@@ -22,10 +39,15 @@ export default function Navbar({ site, nav }) {
 
         <div className="collapse navbar-collapse" id="mainNav">
           <ul className="navbar-nav mx-auto gap-lg-2">
-            {/* One link per NavItem row in the database */}
+            {/* One link per NavItem row; the active one gets the "active" class */}
             {nav.map((item) => (
               <li className="nav-item" key={item.anchor}>
-                <a className="nav-link" href={item.anchor}>{item.label}</a>
+                <a
+                  className={`nav-link ${active === item.anchor.slice(1) ? 'active' : ''}`}
+                  href={item.anchor}
+                >
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>

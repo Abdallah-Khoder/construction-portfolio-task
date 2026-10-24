@@ -78,3 +78,146 @@ body {
 }
 .counter-number { font-size: 1.7rem; font-weight: 800; }
 .counter-label { font-size: .8rem; opacity: .9; }
+
+/* ---------- About ---------- */
+.about {
+  padding: 5rem 0;
+}
+
+/* Image area: main image + small image overlapping it */
+.about-images {
+  position: relative;
+  padding-bottom: 3rem;
+}
+.about-img-main {
+  width: 85%;
+  height: 380px;
+  object-fit: cover; /* crop the image to fill the box without stretching */
+  border-radius: 12px;
+  display: block;
+  object-position: center top;  /* keep the top of the image visible */
+}
+.about-img-secondary {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 55%;
+  aspect-ratio: 16 / 10;  /* keeps the image proportions instead of a fixed height */
+  object-fit: cover;
+  border-radius: 12px;
+  border: 6px solid #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+}
+
+/* Orange circle badge ("25+ Years of Experience") */
+.about-badge {
+  position: absolute;
+  top: -20px;
+  right: 12%;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+  box-shadow: 0 8px 20px rgba(230, 101, 40, .4);
+}
+.about-badge strong { font-size: 1.6rem; }
+.about-badge span { font-size: .7rem; padding: 0 .5rem; }
+
+/* Text side */
+.small-heading {
+  color: var(--orange);
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.about h2 {
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+.about p { color: #6c757d; }
+
+/* Feature cards */
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #fde8dc;
+  color: var(--orange);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: .6rem;
+}
+.about h6 { font-weight: 700; margin-bottom: .25rem; }
+.feature p { font-size: .85rem; margin: 0; }
+
+/* Smooth scrolling for anchor links */
+html { scroll-behavior: smooth; }
+
+/* Hide the page scrollbar (scrolling still works) */
+html { scrollbar-width: none; }
+body::-webkit-scrollbar { display: none; }
+
+/* ---------- Back to top button ---------- */
+.scroll-top {
+  position: fixed;   /* stays in the corner while scrolling */
+  right: 20px;
+  bottom: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;            /* hidden by default */
+  visibility: hidden;
+  transition: all .3s;
+  z-index: 1000;
+}
+.scroll-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sections stop exactly below the fixed navbar when opened from a link */
+section[id] { scroll-margin-top: var(--nav-h, 70px); }
+#home { scroll-margin-top: 0; }
+
+/* Navbar links: the active one is orange with an underline */
+/* Navbar links: orange with an underline on hover and when active */
+.navbar-nav .nav-link {
+  position: relative;
+  font-weight: 600;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--orange);
+}
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: .5rem;
+  right: .5rem;
+  bottom: 2px;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0);          /* hidden by default */
+  transition: transform .25s;    /* smooth grow animation */
+}
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  transform: scaleX(1);          /* shown on hover or when active */
+}
