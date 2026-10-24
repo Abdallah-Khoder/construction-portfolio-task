@@ -306,3 +306,167 @@ section[id] { scroll-margin-top: var(--nav-h, 70px); }
 }
 .stat-number { font-size: 1.7rem; font-weight: 800; line-height: 1.1; }
 .stat-label { color: #6c757d; font-size: .85rem; }
+
+/* ---------- Projects ---------- */
+.projects {
+  padding: 3rem 0 5rem;
+  background: #fff;
+}
+
+/* Filter buttons */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+  margin-bottom: 2.5rem;
+}
+.filter-btn {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  color: #333;
+  padding: .45rem 1.2rem;
+  border-radius: 50px;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+}
+.filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+.filter-btn.active {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+}
+
+/* Project card: image as background + dark gradient on the bottom */
+.project-card {
+  position: relative;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: transform .3s;
+}
+.project-card:hover { transform: translateY(-4px); }
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 36, 56, .92) 0%,
+    rgba(15, 36, 56, .2) 60%,
+    transparent 100%
+  );
+}
+
+/* Text on the card */
+.project-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.2rem;
+  color: #fff;
+  z-index: 1; /* above the gradient */
+}
+.project-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, .2);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  margin-bottom: .4rem;
+  transition: background .2s;
+}
+.project-card:hover .project-tag { background: var(--orange); }
+.project-info h5 { font-weight: 700; margin-bottom: .2rem; }
+.project-info p { font-size: .8rem; opacity: .85; margin: 0; }
+
+/* Hover icons (bottom right) */
+.project-actions {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all .25s;
+}
+.project-card:hover .project-actions {
+  opacity: 1;
+  transform: none;
+}
+.project-actions span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .25);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-actions span:last-child { background: var(--orange); }
+
+/* Filter animation: cards fade and rise in */
+.project-item { animation: cardIn .45s ease both; }
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px) scale(.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* The expand icon is clickable */
+.project-actions span:first-child { cursor: pointer; }
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;     /* covers the whole screen */
+  inset: 0;
+  background: rgba(0, 0, 0, .9);
+  z-index: 2000;       /* above the navbar and the scroll-top button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lbFade .25s ease;
+}
+@keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
+
+.lb-figure {
+  margin: 0;
+  max-width: 80vw;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.lb-figure img {
+  display: block;
+  max-width: 80vw;
+  max-height: 70vh;
+  object-fit: contain;
+}
+.lb-figure figcaption { padding: .8rem 1rem; color: #333; font-size: .9rem; }
+.lb-figure figcaption span { display: block; color: #6c757d; font-size: .8rem; }
+
+/* Close and navigation buttons */
+.lb-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  opacity: .8;
+}
+.lb-btn:hover { opacity: 1; }
+.lb-close { top: 1rem; right: 1.5rem; }
+.lb-prev  { left: 1.5rem;  top: 50%; transform: translateY(-50%); }
+.lb-next  { right: 1.5rem; top: 50%; transform: translateY(-50%); }

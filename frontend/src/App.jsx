@@ -6,6 +6,7 @@ import ScrollTopButton from './components/ScrollTopButton'
 import useScrollSpy from './hooks/useScrollSpy'
 import Services from './components/Services'
 import TrackRecord from './components/TrackRecord'
+import Projects from './components/Projects'
 
 const API = 'http://127.0.0.1:8000' // Django backend URL
 
@@ -35,6 +36,11 @@ export default function App() {
       <ScrollTopButton />
       <Services services={data.services} />
       <TrackRecord data={data.track_record} />
+      <Projects
+        section={data.projects_section}
+        categories={data.categories}
+        projects={data.projects}
+      />
     </>
   )
 }
