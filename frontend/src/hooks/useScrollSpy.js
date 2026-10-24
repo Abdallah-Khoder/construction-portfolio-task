@@ -10,14 +10,22 @@ export default function useScrollSpy(ids) {
     if (!key) return
 
     const onScroll = () => {
-      const navH = document.querySelector('.navbar')?.offsetHeight ?? 80
-      let current = ids[0]
+      // "Reading line": a section becomes active when its top passes
+      // 40% of the screen height (not only when it reaches the navbar)
+      const line = window.innerHeight * 0.25
+      let current = null
+      let best = -Infinity
       for (const id of ids) {
         const el = document.getElementById(id)
-        // the last section whose top has reached the area just below the navbar
-        if (el && el.getBoundingClientRect().top <= navH + 20) current = id
+        if (!el) continue
+        const top = el.getBoundingClientRect().top
+        // keep the section that is closest to the navbar (and already passed it)
+        if (top <= line && top > best) {
+          best = top
+          current = id
+        }
       }
-      setActive(current)
+      setActive(current ?? ids[0])
     }
 
     onScroll()
