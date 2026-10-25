@@ -16,6 +16,18 @@ A construction company portfolio website where **all content is loaded from a My
 - Django admin is also available at `/admin/`
 - Automated API tests
 
+
+## Screenshots
+
+### Website
+![Home](docs/screenshots/home.png)
+![Services](docs/screenshots/services.png)
+
+### Admin panel
+![Admin panel](docs/screenshots/admin_panel.png)
+
+
+
 ## Project structure
 ```
 backend/    Django project (models, REST API, admin API, uploaded images in media/)
