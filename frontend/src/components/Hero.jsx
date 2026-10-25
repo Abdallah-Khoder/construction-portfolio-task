@@ -36,7 +36,7 @@ export default function Hero({ hero }) {
       <div className="container">
         <div className="counters row text-center text-white">
           {hero.counters.map((c) => (
-            <div className="col-6 col-md-3" key={c.label}>
+            <div className="col-6 col-md" key={c.label}>
               <div className="counter-number">{c.number}</div>
               <div className="counter-label">{c.label}</div>
             </div>

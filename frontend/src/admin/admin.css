@@ -1,0 +1,11 @@
+/* Admin panel only: keeps the public site styles untouched */
+.admin-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.admin-sidebar .list-group-item.active {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+}
